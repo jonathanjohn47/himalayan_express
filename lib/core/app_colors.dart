@@ -27,5 +27,5 @@ class AppColors {
     900: Color(0xff161111),
   });
 
-  static const Color backgroundColor = Color(0xff241c1c);
+  static const Color backgroundColor = Colors.white;
 }

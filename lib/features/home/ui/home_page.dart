@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
         length: getController.categories.length,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
             titleSpacing: 0,
             title: Row(
               children: [
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
                     width: 100.w,
                     child: SafeArea(
                         child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                      padding: EdgeInsets.symmetric(horizontal: 12.0.w),
                       child: Image.asset(
                           'assets/images/Himalayan Express___ PNG.png'),
                     )),

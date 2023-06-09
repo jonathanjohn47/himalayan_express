@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1025967779190",
+    "project_id": "himalayanexpress-6288a",
+    "storage_bucket": "himalayanexpress-6288a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025967779190:android:1f9ae95615201e11f75e57",
+        "android_client_info": {
+          "package_name": "com.app.himalayan_express"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025967779190-u1eaqu1oqjl3rkq4te0kk42rrm47onvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLeHrH_eWtKLRDU7v7Fnxji2RmbtFIEyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025967779190-u1eaqu1oqjl3rkq4te0kk42rrm47onvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

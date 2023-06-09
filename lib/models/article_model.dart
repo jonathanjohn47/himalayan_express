@@ -7,6 +7,7 @@ class ArticleModel {
   String htmlText;
   DateTime date;
   String headlineImageUrl;
+  String? youtubeLink;
   ArticleCategoryModel category;
 
   ArticleModel({
@@ -16,6 +17,7 @@ class ArticleModel {
     required this.htmlText,
     required this.date,
     required this.headlineImageUrl,
+    this.youtubeLink,
     required this.category,
   });
 
@@ -27,6 +29,7 @@ class ArticleModel {
       htmlText: json['htmlText'],
       date: DateTime.parse(json['date']),
       headlineImageUrl: json['headlineImageUrl'],
+      youtubeLink: json['youtubeLink'],
       category: ArticleCategoryModel.fromJson(json['category']),
     );
   }
@@ -39,6 +42,7 @@ class ArticleModel {
         'date': DateTime(date.year, date.month, date.day, 0, 0, 0)
             .toIso8601String(),
         'headlineImageUrl': headlineImageUrl,
+        'youtubeLink': youtubeLink,
         'category': category.toJson(),
       };
 }
