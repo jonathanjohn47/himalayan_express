@@ -21,25 +21,28 @@ class SplashPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
+          /*Container(
             height: 25.h,
             color: AppColors.primary,
-          ),
+          ),*/
           Expanded(
             child: FadeTransition(
               opacity: getController.animationController,
               child: Center(
-                child: Hero(
-                    tag: 'logo',
-                    child: Image.asset('assets/images/Himalayan Express___ PNG.png')),
+                child: SizedBox(
+                  width: 60.w,
+                  child: Hero(
+                      tag: 'logo',
+                      child: Image.asset('assets/images/Himalayan Express___ PNG.png')),
+                ),
               ),
             ),
           ),
-          Container(
+          /*Container(
             height: 25.h,
             width: 100.w,
             color: AppColors.primary,
-          ),
+          ),*/
         ],
       ),
     );

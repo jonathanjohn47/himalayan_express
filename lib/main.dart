@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:himalayan_express/core/app_colors.dart';
-import 'package:himalayan_express/features/home/ui/home_page.dart';
+import 'package:himalayan_express/features/splash/ui/splash_page.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               secondary: AppColors.secondary),
           useMaterial3: true,
         ),
-        home: HomePage(),
+        home: SplashPage(),
       );
     });
   }

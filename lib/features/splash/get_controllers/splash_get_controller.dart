@@ -12,7 +12,6 @@ class SplashGetController extends GetxController
       vsync: this,
       duration: const Duration(seconds: 3),
     );
-
     animationController.forward().then((value) {
       Future.delayed(const Duration(seconds: 1), () {
         Get.offAll(() => HomePage());
