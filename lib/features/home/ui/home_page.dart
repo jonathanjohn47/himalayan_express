@@ -67,7 +67,8 @@ class HomePage extends StatelessWidget {
                               ...getController.categories.map((e) => Tab(
                                     child: Text(
                                       e.name,
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 10.sp),
                                     ),
                                   ))
                             ],
@@ -143,49 +144,66 @@ class HomePage extends StatelessWidget {
               );
             }),
           ),
-          bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              //home, contact, share
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.home_filled,
-                        color: AppColors.primary,
-                      )),
-                  Text('Home', style: TextStyle(color: AppColors.primary)),
-                ],
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.0.sp),
+                topRight: Radius.circular(8.sp),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Get.to(() => const ContactPage());
-                      },
-                      icon: Icon(
-                        Icons.contact_page,
-                        color: AppColors.primary,
-                      )),
-                  Text('Contact', style: TextStyle(color: AppColors.primary)),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.share,
-                        color: AppColors.primary,
-                      )),
-                  Text('Share', style: TextStyle(color: AppColors.primary)),
-                ],
-              ),
-            ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.6),
+                  spreadRadius: 1.sp,
+                  blurRadius: 1.sp,
+                  offset: Offset(0, -1.5.sp),
+                ),
+              ],
+              color: AppColors.primary,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //home, contact, share
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.home_filled,
+                          color: Colors.white,
+                        )),
+                    Text('Home', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Get.to(() => const ContactPage());
+                        },
+                        icon: Icon(
+                          Icons.contact_page,
+                          color: Colors.white,
+                        )),
+                    Text('Contact', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        )),
+                    Text('Share', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       );
