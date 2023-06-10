@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
+import 'package:himalayan_express/core/app_constants.dart';
 import 'package:himalayan_express/features/home/ui/home_page.dart';
 
 class SplashGetController extends GetxController
@@ -8,6 +10,7 @@ class SplashGetController extends GetxController
 
   @override
   void onInit() {
+    signInTemporarily();
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -18,5 +21,13 @@ class SplashGetController extends GetxController
       });
     });
     super.onInit();
+  }
+
+  void signInTemporarily() {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: AppConstants.emailForTemporaryLogin,
+            password: AppConstants.passwordForTemporaryLogin)
+        .then((value) {});
   }
 }

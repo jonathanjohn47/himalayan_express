@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
       return DefaultTabController(
         length: getController.categories.length,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
             titleSpacing: 0,
@@ -30,6 +31,15 @@ class HomePage extends StatelessWidget {
                   width: 30.w,
                 ),
                 const Spacer(),
+                MaterialButton(
+                  elevation: 4,
+                  onPressed: () {},
+                  child: Text('E-paper'),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0.sp),
+                      side: BorderSide(
+                          color: AppColors.secondary, width: 1.5.sp)),
+                ),
                 IconButton(
                     onPressed: () {
                       Get.to(() => SearchPage());
@@ -48,18 +58,21 @@ class HomePage extends StatelessWidget {
                 : Column(
                     children: [
                       Obx(() {
-                        return TabBar(
-                          controller: getController.tabController,
-                          isScrollable: true,
-                          tabs: [
-                            ...getController.categories.map((e) => Tab(
-                                  child: Text(
-                                    e.name,
-                                    style: TextStyle(color: AppColors.primary),
-                                  ),
-                                ))
-                          ],
-                          indicatorColor: AppColors.secondary,
+                        return Container(
+                          color: AppColors.secondary,
+                          child: TabBar(
+                            controller: getController.tabController,
+                            isScrollable: true,
+                            tabs: [
+                              ...getController.categories.map((e) => Tab(
+                                    child: Text(
+                                      e.name,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ))
+                            ],
+                            indicatorColor: Colors.white,
+                          ),
                         );
                       }),
                       Expanded(
@@ -79,51 +92,54 @@ class HomePage extends StatelessWidget {
           }),
           drawer: Drawer(
             child: Obx(() {
-              return Column(
-                children: [
-                  Container(
-                    height: 25.h,
-                    width: 100.w,
-                    child: SafeArea(
-                        child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.0.w),
-                      child: Image.asset(
-                          'assets/images/Himalayan Express___ PNG.png'),
-                    )),
-                  ),
-                  Expanded(
-                      child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      ArticleCategoryModel element =
-                          getController.categories[index];
-                      return Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              element.name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
+              return Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 25.h,
+                      width: 100.w,
+                      child: SafeArea(
+                          child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+                        child: Image.asset(
+                            'assets/images/Himalayan Express___ PNG.png'),
+                      )),
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        ArticleCategoryModel element =
+                            getController.categories[index];
+                        return Column(
+                          children: [
+                            ListTile(
+                              title: Text(
+                                element.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              onTap: () {
+                                getController.selectedIndex.value =
+                                    getController.categories.indexOf(element);
+                                getController.tabController.animateTo(
+                                    getController.selectedIndex.value);
+                                Navigator.pop(context);
+                              },
                             ),
-                            onTap: () {
-                              getController.selectedIndex.value =
-                                  getController.categories.indexOf(element);
-                              getController.tabController
-                                  .animateTo(getController.selectedIndex.value);
-                              Navigator.pop(context);
-                            },
-                          ),
-                          Divider(
-                            thickness: 0.5.sp,
-                            color: AppColors.secondary.withOpacity(0.5),
-                            indent: 5.w,
-                            endIndent: 5.w,
-                          )
-                        ],
-                      );
-                    },
-                    itemCount: getController.categories.length,
-                  ))
-                ],
+                            Divider(
+                              thickness: 0.5.sp,
+                              color: AppColors.secondary.withOpacity(0.5),
+                              indent: 5.w,
+                              endIndent: 5.w,
+                            )
+                          ],
+                        );
+                      },
+                      itemCount: getController.categories.length,
+                    ))
+                  ],
+                ),
               );
             }),
           ),

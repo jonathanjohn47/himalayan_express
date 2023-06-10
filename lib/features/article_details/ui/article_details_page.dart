@@ -2,17 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:sizer/sizer.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../../models/article_model.dart';
 
 class ArticleDetailsPage extends StatelessWidget {
   final ArticleModel articleModel;
 
-  const ArticleDetailsPage({Key? key, required this.articleModel})
-      : super(key: key);
+  ArticleDetailsPage({Key? key, required this.articleModel}) : super(key: key);
+
+  late YoutubePlayerController youtubePlayerController;
 
   @override
   Widget build(BuildContext context) {
+    youtubePlayerController = YoutubePlayerController(
+      params: const YoutubePlayerParams(
+        showControls: true,
+        showFullscreenButton: true,
+      ),
+    );
+    if (articleModel.youtubeLink != null) {
+      youtubePlayerController.loadPlaylist(list: [articleModel.youtubeLink!]);
+    }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0), child: Container()),
@@ -24,10 +35,11 @@ class ArticleDetailsPage extends StatelessWidget {
             floating: true,
             automaticallyImplyLeading: false,
             expandedHeight: 30.h,
-            flexibleSpace: Image.network(
-              articleModel.headlineImageUrl,
-              fit: BoxFit.cover,
-            ),
+            flexibleSpace: articleModel.youtubeLink != null
+                ? YoutubePlayer(
+                    controller: youtubePlayerController,
+                  )
+                : Image.network(articleModel.headlineImageUrl),
           ),
           SliverToBoxAdapter(
             child: SizedBox(
