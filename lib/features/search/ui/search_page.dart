@@ -60,24 +60,7 @@ class SearchPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: FutureBuilder<List<ArticleModel>>(
                       future: Future.delayed(const Duration(seconds: 2), () {
-                        return List.generate(
-                            15,
-                            (index) => ArticleModel(
-                                id: DateTime.now()
-                                    .millisecondsSinceEpoch
-                                    .toString(),
-                                title:
-                                    'Article $index You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there.',
-                                description: 'description',
-                                htmlText:
-                                    """<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>""",
-                                date: DateTime.now(),
-                                headlineImageUrl:
-                                    'https://picsum.photos/200/300',
-                                category: ArticleCategoryModel(
-                                    id: index.toString(),
-                                    name: 'Business',
-                                    categoryNumber: index)));
+                        return [];
                       }),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

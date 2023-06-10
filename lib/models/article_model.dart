@@ -1,3 +1,5 @@
+import 'package:himalayan_express/models/publisher_model.dart';
+
 import 'category_model.dart';
 
 class ArticleModel {
@@ -9,6 +11,7 @@ class ArticleModel {
   String headlineImageUrl;
   String? youtubeLink;
   ArticleCategoryModel category;
+  PublisherModel publisher;
 
   ArticleModel({
     required this.id,
@@ -19,6 +22,7 @@ class ArticleModel {
     required this.headlineImageUrl,
     this.youtubeLink,
     required this.category,
+    required this.publisher,
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +35,7 @@ class ArticleModel {
       headlineImageUrl: json['headlineImageUrl'],
       youtubeLink: json['youtubeLink'],
       category: ArticleCategoryModel.fromJson(json['category']),
+      publisher: PublisherModel.fromJson(json['publisher']),
     );
   }
 
@@ -39,10 +44,10 @@ class ArticleModel {
         'title': title,
         'description': description,
         'htmlText': htmlText,
-        'date': DateTime(date.year, date.month, date.day, 0, 0, 0)
-            .toIso8601String(),
+        'date': date.toIso8601String(),
         'headlineImageUrl': headlineImageUrl,
         'youtubeLink': youtubeLink,
         'category': category.toJson(),
+        'publisher': publisher.toJson(),
       };
 }

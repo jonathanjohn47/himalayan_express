@@ -89,6 +89,22 @@ class ArticlesTab extends StatelessWidget {
                                         ],
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.sp),
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(radius: 10.sp, backgroundImage: NetworkImage(e.publisher.profilePicLink),),
+                                          SizedBox(width: 2.w,),
+                                          Text(
+                                            e.publisher.name,
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 10.sp),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     Divider(
                                       thickness: 0.5.sp,
                                       color: AppColors.secondary.shade50
@@ -166,7 +182,7 @@ class ArticlesTab extends StatelessWidget {
                                         articleModel: e,
                                       ));
                                 },
-                                child: Column(
+                                child: Wrap(
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.symmetric(
