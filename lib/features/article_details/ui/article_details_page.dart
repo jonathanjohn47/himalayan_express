@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:sizer/sizer.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../models/article_model.dart';
 
@@ -16,14 +16,12 @@ class ArticleDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     youtubePlayerController = YoutubePlayerController(
-      params: const YoutubePlayerParams(
-        showControls: true,
-        showFullscreenButton: true,
+      initialVideoId: articleModel.youtubeLink!,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
       ),
     );
-    if (articleModel.youtubeLink != null) {
-      youtubePlayerController.loadPlaylist(list: [articleModel.youtubeLink!]);
-    }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0), child: Container()),
