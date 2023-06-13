@@ -31,216 +31,214 @@ class ArticlesTab extends StatelessWidget {
               List<ArticleModel> allArticles = snapshot.data!.docs.map((e) {
                 return ArticleModel.fromJson(jsonDecode(jsonEncode(e.data())));
               }).toList();
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0.sp),
-                  child: allArticles.length < 5
-                      ? Column(
-                          children: [
-                            ...allArticles.map((e) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.to(() => ArticleDetailsPage(
-                                        articleModel: e,
-                                      ));
-                                },
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.sp),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              e.title,
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 2.w,
-                                          ),
-                                          ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.sp),
-                                              child: Image.network(
-                                                e.headlineImageUrl,
-                                                fit: BoxFit.cover,
-                                                width: 20.w,
-                                                height: 20.w,
-                                              )),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.sp),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Published: ${e.date.toDateWithShortMonthNameAndTime}",
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0.sp),
+                child: allArticles.length < 5
+                    ? ListView(
+                        children: [
+                          ...allArticles.map((e) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => ArticleDetailsPage(
+                                      articleModel: e,
+                                    ));
+                              },
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.sp),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            e.title,
                                             style: TextStyle(
-                                                color: Colors.grey,
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: 10.sp),
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(4.sp),
+                                            child: Image.network(
+                                              e.headlineImageUrl,
+                                              fit: BoxFit.cover,
+                                              width: 20.w,
+                                              height: 20.w,
+                                            )),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.sp),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(radius: 10.sp, backgroundImage: NetworkImage(e.publisher.profilePicLink),),
-                                          SizedBox(width: 2.w,),
-                                          Text(
-                                            e.publisher.name,
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 10.sp),
-                                          ),
-                                        ],
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.sp),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Published: ${e.date.toDateWithShortMonthNameAndTime}",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10.sp),
+                                        ),
+                                      ],
                                     ),
-                                    Divider(
-                                      thickness: 0.5.sp,
-                                      color: AppColors.secondary.shade50
-                                          .withOpacity(0.5),
-                                      indent: 8.w,
-                                      endIndent: 8.w,
-                                    )
-                                  ],
-                                ),
-                              );
-                            }).toList()
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            CarouselSlider(
-                                items: allArticles.sublist(0, 5).map((e) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Get.to(() => ArticleDetailsPage(
-                                            articleModel: e,
-                                          ));
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 12.0.sp),
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.sp),
-                                              child: Image.network(
-                                                e.headlineImageUrl,
-                                                fit: BoxFit.cover,
-                                                width: 100.w,
-                                                height: 25.h,
-                                              )),
-                                          SizedBox(
-                                            height: 2.h,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  e.title,
-                                                  style: TextStyle(
-                                                      fontSize: 14.sp,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.sp),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(radius: 10.sp, backgroundImage: NetworkImage(e.publisher.profilePicLink),),
+                                        SizedBox(width: 2.w,),
+                                        Text(
+                                          e.publisher.name,
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 10.sp),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    thickness: 0.5.sp,
+                                    color: AppColors.secondary.shade50
+                                        .withOpacity(0.5),
+                                    indent: 8.w,
+                                    endIndent: 8.w,
+                                  )
+                                ],
+                              ),
+                            );
+                          }).toList()
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          CarouselSlider(
+                              items: allArticles.sublist(0, 5).map((e) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => ArticleDetailsPage(
+                                          articleModel: e,
+                                        ));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12.0.sp),
+                                    child: Column(
+                                      children: [
+                                        ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(4.sp),
+                                            child: Image.network(
+                                              e.headlineImageUrl,
+                                              fit: BoxFit.cover,
+                                              width: 100.w,
+                                              height: 25.h,
+                                            )),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                e.title,
+                                                style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
-                                            ],
-                                          ),
-                                          Divider(
-                                            thickness: 0.5.sp,
-                                            color: AppColors.secondary.shade50
-                                                .withOpacity(0.5),
-                                            indent: 8.w,
-                                            endIndent: 8.w,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                                options: CarouselOptions(
-                                  height: 45.h,
-                                  autoPlay: true,
-                                  viewportFraction: 0.9,
-                                )),
-                            ...allArticles.sublist(5).map((e) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.to(() => ArticleDetailsPage(
-                                        articleModel: e,
-                                      ));
-                                },
-                                child: Wrap(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.sp),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              e.title,
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.bold),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 2.w,
-                                          ),
-                                          ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.sp),
-                                              child: Image.network(
-                                                e.headlineImageUrl,
-                                                fit: BoxFit.cover,
-                                                width: 20.w,
-                                                height: 20.w,
-                                              )),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
+                                        Divider(
+                                          thickness: 0.5.sp,
+                                          color: AppColors.secondary.shade50
+                                              .withOpacity(0.5),
+                                          indent: 8.w,
+                                          endIndent: 8.w,
+                                        )
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.sp),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Published: ${e.date.toDateWithShortMonthNameAndTime}",
+                                  ),
+                                );
+                              }).toList(),
+                              options: CarouselOptions(
+                                height: 45.h,
+                                autoPlay: true,
+                                viewportFraction: 0.9,
+                              )),
+                          ...allArticles.sublist(5).map((e) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => ArticleDetailsPage(
+                                      articleModel: e,
+                                    ));
+                              },
+                              child: Wrap(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.sp),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            e.title,
                                             style: TextStyle(
-                                                color: Colors.grey,
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: 10.sp),
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(4.sp),
+                                            child: Image.network(
+                                              e.headlineImageUrl,
+                                              fit: BoxFit.cover,
+                                              width: 20.w,
+                                              height: 20.w,
+                                            )),
+                                      ],
                                     ),
-                                    Divider(
-                                      thickness: 0.5.sp,
-                                      color: AppColors.secondary.shade50
-                                          .withOpacity(0.5),
-                                      indent: 8.w,
-                                      endIndent: 8.w,
-                                    )
-                                  ],
-                                ),
-                              );
-                            }).toList()
-                          ],
-                        ),
-                ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.sp),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Published: ${e.date.toDateWithShortMonthNameAndTime}",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10.sp),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    thickness: 0.5.sp,
+                                    color: AppColors.secondary.shade50
+                                        .withOpacity(0.5),
+                                    indent: 8.w,
+                                    endIndent: 8.w,
+                                  )
+                                ],
+                              ),
+                            );
+                          }).toList()
+                        ],
+                      ),
               );
             }
             return const Center(
