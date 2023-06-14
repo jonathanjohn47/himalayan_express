@@ -15,13 +15,15 @@ class ArticleDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    youtubePlayerController = YoutubePlayerController(
-      initialVideoId: articleModel.youtubeLink!,
-      flags: YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
+    if (articleModel.youtubeLink != null) {
+      youtubePlayerController = YoutubePlayerController(
+        initialVideoId: articleModel.youtubeLink!,
+        flags: YoutubePlayerFlags(
+          autoPlay: true,
+          mute: false,
+        ),
+      );
+    }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0), child: Container()),

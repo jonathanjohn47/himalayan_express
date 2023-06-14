@@ -117,7 +117,7 @@ class ArticlesTab extends StatelessWidget {
                           }).toList()
                         ],
                       )
-                    : Column(
+                    : ListView(
                         children: [
                           CarouselSlider(
                               items: allArticles.sublist(0, 5).map((e) {
@@ -177,6 +177,7 @@ class ArticlesTab extends StatelessWidget {
                           ...allArticles.sublist(5).map((e) {
                             return GestureDetector(
                               onTap: () {
+                                print(e.toJson());
                                 Get.to(() => ArticleDetailsPage(
                                       articleModel: e,
                                     ));
