@@ -49,6 +49,7 @@ dependencies:
   cloud_firestore: ^4.8.0
   google_sign_in: ^6.1.4
   youtube_player_flutter: ^8.1.2
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

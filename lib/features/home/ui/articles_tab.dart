@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:himalayan_express/core/app_colors.dart';
 import 'package:himalayan_express/core/app_constants.dart';
@@ -144,18 +145,20 @@ class ArticlesTab extends StatelessWidget {
                                         SizedBox(
                                           height: 2.h,
                                         ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                e.title,
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                        Expanded(
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: AutoSizeText(
+                                                  e.title,
+                                                  style: TextStyle(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         Divider(
                                           thickness: 0.5.sp,
@@ -170,7 +173,7 @@ class ArticlesTab extends StatelessWidget {
                                 );
                               }).toList(),
                               options: CarouselOptions(
-                                height: 45.h,
+                                height: 40.h,
                                 autoPlay: true,
                                 viewportFraction: 0.9,
                               )),
