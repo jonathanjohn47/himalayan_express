@@ -9,4 +9,6 @@ class AppConstants {
   static String categories = 'Categories';
 
   static String courses = 'Courses';
+
+  static String ePapers = 'EPapers';
 }

@@ -5,6 +5,7 @@ import 'package:himalayan_express/core/app_colors.dart';
 import 'package:himalayan_express/core/app_constants.dart';
 import 'package:himalayan_express/features/authentication/ui/sign_in_page.dart';
 import 'package:himalayan_express/features/courses/ui/courses_page.dart';
+import 'package:himalayan_express/features/e_paper/ui/e_paper_page.dart';
 import 'package:himalayan_express/features/home/ui/articles_tab.dart';
 import 'package:himalayan_express/features/search/ui/search_page.dart';
 import 'package:himalayan_express/models/category_model.dart';
@@ -38,7 +39,9 @@ class HomePage extends StatelessWidget {
                 const Spacer(),
                 MaterialButton(
                   elevation: 4,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => EPaperPage());
+                  },
                   child: Text('E-paper'),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0.sp),
