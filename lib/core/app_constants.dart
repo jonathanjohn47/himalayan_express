@@ -7,4 +7,6 @@ class AppConstants {
   static String articles = 'Articles';
 
   static String categories = 'Categories';
+
+  static String courses = 'Courses';
 }

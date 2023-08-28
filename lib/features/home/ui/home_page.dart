@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:himalayan_express/core/app_colors.dart';
+import 'package:himalayan_express/core/app_constants.dart';
+import 'package:himalayan_express/features/authentication/ui/sign_in_page.dart';
+import 'package:himalayan_express/features/courses/ui/courses_page.dart';
 import 'package:himalayan_express/features/home/ui/articles_tab.dart';
 import 'package:himalayan_express/features/search/ui/search_page.dart';
 import 'package:himalayan_express/models/category_model.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../contact/ui/contact_page.dart';
@@ -194,12 +199,19 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (FirebaseAuth.instance.currentUser!.email !=
+                              AppConstants.emailForTemporaryLogin) {
+                            Get.to(() => CoursesPage());
+                          } else {
+                            Get.offAll(() => SignInPage());
+                          }
+                        },
                         icon: Icon(
-                          Icons.share,
+                          MdiIcons.clipboardList,
                           color: Colors.white,
                         )),
-                    Text('Share', style: TextStyle(color: Colors.white)),
+                    Text('Courses', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ],
