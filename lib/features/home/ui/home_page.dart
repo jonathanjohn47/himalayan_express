@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:himalayan_express/core/app_colors.dart';
-import 'package:himalayan_express/core/app_constants.dart';
 import 'package:himalayan_express/features/authentication/ui/sign_in_page.dart';
-import 'package:himalayan_express/features/courses/ui/courses_page.dart';
 import 'package:himalayan_express/features/e_paper/ui/e_paper_page.dart';
 import 'package:himalayan_express/features/home/ui/articles_tab.dart';
 import 'package:himalayan_express/features/search/ui/search_page.dart';
@@ -54,7 +51,10 @@ class HomePage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.search)),
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.notifications)),
+                    onPressed: () {
+                      Get.to(() => SignInPage());
+                    },
+                    icon: const Icon(Icons.person)),
               ],
             ),
           ),
@@ -125,8 +125,11 @@ class HomePage extends StatelessWidget {
                             ListTile(
                               title: Text(
                                 element.name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: element.requiresRegistration
+                                        ? Colors.grey
+                                        : Colors.black),
                               ),
                               onTap: () {
                                 getController.selectedIndex.value =
@@ -202,19 +205,12 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          if (FirebaseAuth.instance.currentUser!.email !=
-                              AppConstants.emailForTemporaryLogin) {
-                            Get.to(() => CoursesPage());
-                          } else {
-                            Get.offAll(() => SignInPage());
-                          }
-                        },
+                        onPressed: () {},
                         icon: Icon(
-                          MdiIcons.clipboardList,
+                          MdiIcons.share,
                           color: Colors.white,
                         )),
-                    Text('Courses', style: TextStyle(color: Colors.white)),
+                    Text('Share', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ],

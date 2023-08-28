@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:himalayan_express/core/app_constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:himalayan_express/core/app_constants.dart';
 
 import '../../../models/category_model.dart';
 
@@ -37,5 +37,16 @@ class HomePageGetController extends GetxController
       });
     });
     super.onInit();
+  }
+
+  void changeCategoryFieldInArticles() {
+    FirebaseFirestore.instance
+        .collection(AppConstants.articles)
+        .get()
+        .then((value) {
+      for (var article in value.docs) {
+
+      }
+    });
   }
 }
