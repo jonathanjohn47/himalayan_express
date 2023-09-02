@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                   width: 30.w,
                 ),
                 const Spacer(),
-                MaterialButton(
+                /*MaterialButton(
                   elevation: 4,
                   onPressed: () {
                     Get.to(() => EPaperPage());
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4.0.sp),
                       side: BorderSide(
                           color: AppColors.secondary, width: 1.5.sp)),
-                ),
+                ),*/
                 IconButton(
                     onPressed: () {
                       Get.to(() => SearchPage());
@@ -205,12 +205,14 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => EPaperPage());
+                        },
                         icon: Icon(
-                          MdiIcons.share,
+                          MdiIcons.newspaper,
                           color: Colors.white,
                         )),
-                    Text('Share', style: TextStyle(color: Colors.white)),
+                    Text('E-Paper', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ],
