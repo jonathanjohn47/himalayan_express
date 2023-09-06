@@ -43,7 +43,8 @@ class ArticlesTab extends StatelessWidget {
                           jsonDecode(jsonEncode(e.data())));
                     }).toList();
                     return FutureBuilder<List<ArticleModel>>(
-                        future: getController.loadArticleFromRtdb(),
+                        future: getController
+                            .loadArticleFromRtdb(categoryModel.name),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             List<ArticleModel> articlesFromRtdb =
