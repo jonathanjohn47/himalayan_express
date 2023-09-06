@@ -53,4 +53,12 @@ class PublisherModel {
     "profile_pic_link": profilePicLink,
     "date_created": dateCreated,
   };
+
+  factory PublisherModel.empty() => PublisherModel(
+    name: '',
+    email: '',
+    password: '',
+    profilePicLink: '',
+    dateCreated: '',
+  );
 }

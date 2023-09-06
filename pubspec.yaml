@@ -50,6 +50,7 @@ dependencies:
   google_sign_in: ^6.1.4
   youtube_player_flutter: ^8.1.2
   auto_size_text: ^3.0.0
+  firebase_database: ^10.2.5
 
 dev_dependencies:
   flutter_test:

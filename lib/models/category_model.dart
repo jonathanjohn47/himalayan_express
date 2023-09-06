@@ -47,4 +47,11 @@ class ArticleCategoryModel {
     "name": name,
     "requires_registration": requiresRegistration,
   };
+
+  factory ArticleCategoryModel.empty() => ArticleCategoryModel(
+    id: '',
+    categoryNumber: 0,
+    name: '',
+    requiresRegistration: false,
+  );
 }

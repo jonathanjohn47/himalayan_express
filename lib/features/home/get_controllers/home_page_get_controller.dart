@@ -15,27 +15,26 @@ class HomePageGetController extends GetxController
 
   late TabController tabController;
 
-  Future<void> loadCategories() async {
-    await FirebaseFirestore.instance
+  void loadCategories() async {
+    FirebaseFirestore.instance
         .collection(AppConstants.categories)
-        .get()
-        .then((value) {
+        .snapshots()
+        .listen((value) {
       categories.value = value.docs
           .map((e) =>
               ArticleCategoryModel.fromJson(jsonDecode(jsonEncode(e.data()))))
           .toList();
       categories.sort((a, b) => a.categoryNumber.compareTo(b.categoryNumber));
-    });
-  }
-
-  @override
-  void onInit() {
-    loadCategories().then((value) {
       tabController = TabController(length: categories.length, vsync: this);
       tabController.addListener(() {
         selectedIndex.value = tabController.index;
       });
     });
+  }
+
+  @override
+  void onInit() {
+    loadCategories();
     super.onInit();
   }
 
@@ -44,9 +43,7 @@ class HomePageGetController extends GetxController
         .collection(AppConstants.articles)
         .get()
         .then((value) {
-      for (var article in value.docs) {
-
-      }
+      for (var article in value.docs) {}
     });
   }
 }
