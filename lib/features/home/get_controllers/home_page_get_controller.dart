@@ -4,10 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:himalayan_express/core/app_constants.dart';
-import 'package:http/http.dart' as http;
 
-import '../../../models/article_model.dart';
-import '../../../models/articles_from_rtdb.dart';
 import '../../../models/category_model.dart';
 
 class HomePageGetController extends GetxController
@@ -38,9 +35,7 @@ class HomePageGetController extends GetxController
   @override
   void onInit() {
     loadCategories();
-    Future.delayed(Duration(milliseconds: 500), () {
-      loadArticleFromRtdb();
-    });
+
     super.onInit();
   }
 
@@ -80,37 +75,63 @@ class HomePageGetController extends GetxController
     });
   }
 
-  Future<void> loadArticleFromRtdb() async {
-    String firebaseUrl =
-        "https://himalayanexpress-6288a-default-rtdb.asia-southeast1.firebasedatabase.app/";
+  Future<void> saveCategory() async {
+    List<String> categoryNames = [];
+    categoryNames.add("World History");
+    categoryNames.add("UPSC");
+    categoryNames.add("Uncategorized");
+    categoryNames.add("Startup");
+    categoryNames.add("Sports");
+    categoryNames.add("Social Justice");
+    categoryNames.add("Science and Tech");
+    categoryNames.add("Press Release");
+    categoryNames.add("Politics");
+    categoryNames.add("Pir Panchal");
+    categoryNames.add("National");
+    categoryNames.add("More");
+    categoryNames.add("Ladakh");
+    categoryNames.add("Kashmir");
+    categoryNames.add("JKSSB");
+    categoryNames.add("JKPSC");
+    categoryNames.add("Jammu Kashmir");
+    categoryNames.add("Jammu");
+    categoryNames.add("International Relations");
+    categoryNames.add("International");
+    categoryNames.add("Internal Security");
+    categoryNames.add("Indian Society");
+    categoryNames.add("Indian Polity");
+    categoryNames.add("Indian History");
+    categoryNames.add("Healthcare");
+    categoryNames.add("Government Schemes");
+    categoryNames.add("Geography");
+    categoryNames.add("Featured");
+    categoryNames.add("Ethics, Integrity and Aptitude");
+    categoryNames.add("Environment");
+    categoryNames.add("Entertainment");
+    categoryNames.add("Edit/Opinion");
+    categoryNames.add("Economy");
+    categoryNames.add("Economics");
+    categoryNames.add("Disaster Management");
+    categoryNames.add("Current Affairs");
+    categoryNames.add("Chenab Valley");
+    categoryNames.add("Business");
+    categoryNames.add("Ayurveda");
+    categoryNames.add("Aspirants Corner");
 
-    final response = await http.get(Uri.parse(firebaseUrl + "/Articles.json"));
+    for (var categoryName in categoryNames) {
+      ArticleCategoryModel articleCategoryModel = ArticleCategoryModel(
+          id: (categoryNames.indexOf(categoryName) + categories.length + 1)
+              .toString(),
+          name: categoryName,
+          categoryNumber:
+              categoryNames.indexOf(categoryName) + categories.length + 1,
+          requiresRegistration: false);
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> articles = jsonDecode(response.body);
-
-      articles.forEach((key, value) async {
-        ArticlesFromRtdb temp = ArticlesFromRtdb.fromJson(value);
-        List<String> receivedCategories = temp.category;
-        for (String receivedCategory in receivedCategories) {
-          int indexWhere = categories.indexWhere((category) =>
-              category.name.toLowerCase() == receivedCategory.toLowerCase());
-          if (indexWhere == -1) {
-            ArticleCategoryModel categoryModel = ArticleCategoryModel(
-                id: '${categories.length + 1}',
-                name: receivedCategory,
-                categoryNumber: categories.length + 1,
-                requiresRegistration: false);
-
-            await FirebaseFirestore.instance
-                .collection(AppConstants.categories)
-                .doc(categoryModel.id)
-                .set(categoryModel.toJson());
-          }
-        }
-      });
-    } else {
-      throw Exception("Failed to load articles");
+      await FirebaseFirestore.instance
+          .collection(AppConstants.categories)
+          .doc((categoryNames.indexOf(categoryName) + categories.length + 1)
+              .toString())
+          .set(articleCategoryModel.toJson());
     }
   }
 }
