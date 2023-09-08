@@ -4,7 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:himalayan_express/core/app_constants.dart';
+import 'package:http/http.dart' as http;
 
+import '../../../models/article_model.dart';
+import '../../../models/articles_from_rtdb.dart';
 import '../../../models/category_model.dart';
 
 class HomePageGetController extends GetxController
@@ -35,8 +38,9 @@ class HomePageGetController extends GetxController
   @override
   void onInit() {
     loadCategories();
-
-    //deleteDuplicateCategories();
+    Future.delayed(Duration(milliseconds: 500), () {
+      loadArticleFromRtdb();
+    });
     super.onInit();
   }
 
@@ -74,5 +78,39 @@ class HomePageGetController extends GetxController
             .set(newCategory.toJson());
       }
     });
+  }
+
+  Future<void> loadArticleFromRtdb() async {
+    String firebaseUrl =
+        "https://himalayanexpress-6288a-default-rtdb.asia-southeast1.firebasedatabase.app/";
+
+    final response = await http.get(Uri.parse(firebaseUrl + "/Articles.json"));
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> articles = jsonDecode(response.body);
+
+      articles.forEach((key, value) async {
+        ArticlesFromRtdb temp = ArticlesFromRtdb.fromJson(value);
+        List<String> receivedCategories = temp.category;
+        for (String receivedCategory in receivedCategories) {
+          int indexWhere = categories.indexWhere((category) =>
+              category.name.toLowerCase() == receivedCategory.toLowerCase());
+          if (indexWhere == -1) {
+            ArticleCategoryModel categoryModel = ArticleCategoryModel(
+                id: '${categories.length + 1}',
+                name: receivedCategory,
+                categoryNumber: categories.length + 1,
+                requiresRegistration: false);
+
+            await FirebaseFirestore.instance
+                .collection(AppConstants.categories)
+                .doc(categoryModel.id)
+                .set(categoryModel.toJson());
+          }
+        }
+      });
+    } else {
+      throw Exception("Failed to load articles");
+    }
   }
 }

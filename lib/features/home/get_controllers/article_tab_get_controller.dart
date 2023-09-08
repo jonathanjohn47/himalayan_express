@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:himalayan_express/core/app_constants.dart';
 import 'package:himalayan_express/models/category_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,13 +28,7 @@ class ArticleTabGetController extends GetxController {
         HomePageGetController homePageGetController = Get.find();
         int indexWhere = homePageGetController.categories
             .indexWhere((element) => receivedCategories.contains(categoryName));
-        if (indexWhere == -1) {
-          ArticleCategoryModel newCategory = ArticleCategoryModel(
-              name: categoryName,
-              categoryNumber: homePageGetController.categories.length + 1,
-              id: '${homePageGetController.categories.length + 1}',
-              requiresRegistration: false);
-        } else {
+        if (indexWhere != -1) {
           articlesList.add(ArticleModel(
             id: key,
             title: temp.title,
