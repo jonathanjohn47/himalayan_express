@@ -36,7 +36,7 @@ class SignUpPage extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'Welcome to Wanah Organic',
+                              'Welcome to Himalayan Express',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w500,

@@ -10,12 +10,18 @@ import 'package:himalayan_express/helpers/date_time_helpers.dart';
 import '../../../core/app_constants.dart';
 import '../../../models/e_paper_model.dart';
 
-
 class EPaperGetController extends GetxController {
   TextEditingController selectedDateController = TextEditingController();
   Rx<EPaperModel> ePaperModel = EPaperModel.empty().obs;
 
   CarouselController carouselController = CarouselController();
+
+  RxInt currentIndex = 0.obs;
+
+  bool get hasPreviousPage => currentIndex.value > 0;
+
+  bool get hasNextPage =>
+      currentIndex.value < ePaperModel.value.ePaperImageModels.length - 1;
 
   @override
   void onInit() {
