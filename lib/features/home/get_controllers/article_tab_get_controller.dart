@@ -1,9 +1,6 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:himalayan_express/core/app_constants.dart';
-import 'package:himalayan_express/models/category_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../models/article_model.dart';
@@ -30,7 +27,7 @@ class ArticleTabGetController extends GetxController {
             .indexWhere((element) => receivedCategories.contains(categoryName));
         if (indexWhere != -1) {
           articlesList.add(ArticleModel(
-            id: key,
+            id: temp.url,
             title: temp.title,
             description: "",
             // Fill as required

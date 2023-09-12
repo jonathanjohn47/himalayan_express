@@ -75,11 +75,10 @@ class EPaperPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text("Nasiat",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
-                          color: AppColors.primary)),
+                  Image.asset(
+                    'assets/images/Himalayan Express___ PNG.png',
+                    height: 10.h,
+                  ),
                 ],
               ),
               SizedBox(
@@ -94,15 +93,15 @@ class EPaperPage extends StatelessWidget {
                         carouselController: getController.carouselController,
                         items: getController.ePaperModel.value.ePaperImageModels
                             .map((e) => GestureDetector(
-                            onTap: () {
-                              Get.to(() {
-                                return ImageView(
-                                  heroTag: e.imageLink,
-                                  image: e.imageLink,
-                                );
-                              });
-                            },
-                            child: Image.network(e.imageLink)))
+                                onTap: () {
+                                  Get.to(() {
+                                    return ImageView(
+                                      heroTag: e.imageLink,
+                                      image: e.imageLink,
+                                    );
+                                  });
+                                },
+                                child: Image.network(e.imageLink)))
                             .toList(),
                         options: CarouselOptions(
                           viewportFraction: 1,
@@ -122,10 +121,10 @@ class EPaperPage extends StatelessWidget {
                             shape: CircleBorder(),
                             onPressed: getController.hasPreviousPage
                                 ? () => getController.carouselController
-                                .previousPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.linear,
-                            )
+                                        .previousPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.linear,
+                                    )
                                 : null,
                             child: Icon(Icons.chevron_left),
                             backgroundColor: getController.hasPreviousPage
@@ -137,10 +136,10 @@ class EPaperPage extends StatelessWidget {
                             shape: CircleBorder(),
                             onPressed: getController.hasNextPage
                                 ? () =>
-                                getController.carouselController.nextPage(
-                                  duration: Duration(milliseconds: 300),
-                                  curve: Curves.linear,
-                                )
+                                    getController.carouselController.nextPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.linear,
+                                    )
                                 : null,
                             child: Icon(Icons.chevron_right),
                             backgroundColor: getController.hasNextPage
@@ -162,7 +161,7 @@ class EPaperPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                     getController.ePaperModel.value.ePaperImageModels.length,
-                        (index) => AnimatedContainer(
+                    (index) => AnimatedContainer(
                       duration: Duration(milliseconds: 300),
                       margin: EdgeInsets.all(2),
                       height: 8,

@@ -51,6 +51,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   auto_size_text: ^3.0.0
   firebase_database: ^10.2.5
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies:
   flutter_test:
