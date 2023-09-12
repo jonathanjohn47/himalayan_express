@@ -21,33 +21,36 @@ class ArticleTabGetController extends GetxController {
 
       articles.forEach((key, value) {
         ArticlesFromRtdb temp = ArticlesFromRtdb.fromJson(value);
-        List<String> receivedCategories = temp.category;
-        HomePageGetController homePageGetController = Get.find();
-        int indexWhere = homePageGetController.categories
-            .indexWhere((element) => receivedCategories.contains(categoryName));
-        if (indexWhere != -1) {
-          articlesList.add(ArticleModel(
-            id: temp.url,
-            title: temp.title,
-            description: "",
-            // Fill as required
-            htmlText: temp.content,
-            // Fill as required
-            date: DateTime.fromMillisecondsSinceEpoch(temp.timestamp),
-            // Timestamp in Firebase is in milliseconds, convert to DateTime
-            headlineImageUrl: temp.thumbnailImageUrl,
-            // Fill as required
-            youtubeLink: "",
-            // Fill as required
-            category: homePageGetController.categories[indexWhere],
-            // Pass the required values and create object
-            publisher: PublisherModel(
-                name: temp.publisherName,
-                email: "email",
-                password: "password",
-                profilePicLink: "",
-                dateCreated: ""), // Pass the required values and create object
-          ));
+        if (temp.content.isNotEmpty) {
+          List<String> receivedCategories = temp.category;
+          HomePageGetController homePageGetController = Get.find();
+          int indexWhere = homePageGetController.categories.indexWhere(
+              (element) => receivedCategories.contains(categoryName));
+          if (indexWhere != -1) {
+            articlesList.add(ArticleModel(
+              id: temp.url,
+              title: temp.title,
+              description: "",
+              // Fill as required
+              htmlText: temp.content,
+              // Fill as required
+              date: DateTime.fromMillisecondsSinceEpoch(temp.timestamp),
+              // Timestamp in Firebase is in milliseconds, convert to DateTime
+              headlineImageUrl: temp.thumbnailImageUrl,
+              // Fill as required
+              youtubeLink: "",
+              // Fill as required
+              category: homePageGetController.categories[indexWhere],
+              // Pass the required values and create object
+              publisher: PublisherModel(
+                  name: temp.publisherName,
+                  email: "email",
+                  password: "password",
+                  profilePicLink: "",
+                  dateCreated:
+                      ""), // Pass the required values and create object
+            ));
+          }
         }
       });
     } else {

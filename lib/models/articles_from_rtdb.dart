@@ -4,9 +4,13 @@
 
 import 'dart:convert';
 
-Map<String, ArticlesFromRtdb> articlesFromRtdbFromJson(String str) => Map.from(json.decode(str)).map((k, v) => MapEntry<String, ArticlesFromRtdb>(k, ArticlesFromRtdb.fromJson(v)));
+Map<String, ArticlesFromRtdb> articlesFromRtdbFromJson(String str) =>
+    Map.from(json.decode(str)).map((k, v) =>
+        MapEntry<String, ArticlesFromRtdb>(k, ArticlesFromRtdb.fromJson(v)));
 
-String articlesFromRtdbToJson(Map<String, ArticlesFromRtdb> data) => json.encode(Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
+String articlesFromRtdbToJson(Map<String, ArticlesFromRtdb> data) =>
+    json.encode(
+        Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
 
 class ArticlesFromRtdb {
   List<String> category;
@@ -46,23 +50,26 @@ class ArticlesFromRtdb {
         url: url ?? this.url,
       );
 
-  factory ArticlesFromRtdb.fromJson(Map<String, dynamic> json) => ArticlesFromRtdb(
-    category: List<String>.from(json["category"].map((x) => x)),
-    content: json["content"],
-    publisherName: json["publisher_name"],
-    thumbnailImageUrl: json["thumbnail_image_url"],
-    timestamp: json["timestamp"],
-    title: json["title"],
-    url: json["url"],
-  );
+  factory ArticlesFromRtdb.fromJson(Map<String, dynamic> json) =>
+      ArticlesFromRtdb(
+        category: List<String>.from(json["category"].map((x) => x)),
+        content: json["content"],
+        publisherName: json["publisher_name"],
+        thumbnailImageUrl: json["thumbnail_image_url"] == false
+            ? ""
+            : json["thumbnail_image_url"],
+        timestamp: json["timestamp"],
+        title: json["title"],
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "category": List<dynamic>.from(category.map((x) => x)),
-    "content": content,
-    "publisher_name": publisherName,
-    "thumbnail_image_url": thumbnailImageUrl,
-    "timestamp": timestamp,
-    "title": title,
-    "url": url,
-  };
+        "category": List<dynamic>.from(category.map((x) => x)),
+        "content": content,
+        "publisher_name": publisherName,
+        "thumbnail_image_url": thumbnailImageUrl,
+        "timestamp": timestamp,
+        "title": title,
+        "url": url,
+      };
 }
