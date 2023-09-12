@@ -75,10 +75,11 @@ class EPaperPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset(
-                    'assets/images/Himalayan Express___ PNG.png',
-                    height: 8.h,
-                  ),
+                  Text("Nasiat",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.primary)),
                 ],
               ),
               SizedBox(
@@ -104,7 +105,7 @@ class EPaperPage extends StatelessWidget {
                             child: Image.network(e.imageLink)))
                             .toList(),
                         options: CarouselOptions(
-                          viewportFraction: 0.5,
+                          viewportFraction: 1,
                           height: 80.h,
                           enableInfiniteScroll: false,
                           onPageChanged: (index, reason) {
@@ -128,8 +129,8 @@ class EPaperPage extends StatelessWidget {
                                 : null,
                             child: Icon(Icons.chevron_left),
                             backgroundColor: getController.hasPreviousPage
-                                ? AppColors.primary.withOpacity(0.2)
-                                : Colors.grey.withOpacity(0.2),
+                                ? AppColors.primary.withOpacity(0.5)
+                                : Colors.grey.withOpacity(0.5),
                             elevation: 0,
                           ),
                           FloatingActionButton(
@@ -143,8 +144,8 @@ class EPaperPage extends StatelessWidget {
                                 : null,
                             child: Icon(Icons.chevron_right),
                             backgroundColor: getController.hasNextPage
-                                ? AppColors.primary.withOpacity(0.2)
-                                : Colors.grey.withOpacity(0.2),
+                                ? AppColors.primary.withOpacity(0.5)
+                                : Colors.grey.withOpacity(0.5),
                             elevation: 0,
                           ),
                         ],
@@ -167,7 +168,9 @@ class EPaperPage extends StatelessWidget {
                       height: 8,
                       width: 8,
                       decoration: BoxDecoration(
-                        color: index == getController.currentIndex.value ? AppColors.primary : Colors.grey,
+                        color: index == getController.currentIndex.value
+                            ? AppColors.primary
+                            : Colors.grey,
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                     ),
