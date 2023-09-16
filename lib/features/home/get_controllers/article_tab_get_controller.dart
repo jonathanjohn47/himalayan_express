@@ -11,6 +11,7 @@ import 'home_page_get_controller.dart';
 class ArticleTabGetController extends GetxController {
   Future<List<ArticleModel>> loadArticleFromRtdb(String categoryName) async {
     List<ArticleModel> articlesList = [];
+    List<ArticleModel> uniqueArticles = [];
     String firebaseUrl =
         "https://himalayanexpress-6288a-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
@@ -34,7 +35,7 @@ class ArticleTabGetController extends GetxController {
               // Fill as required
               htmlText: temp.content,
               // Fill as required
-              date: DateTime.fromMillisecondsSinceEpoch(temp.timestamp),
+              date: DateTime.fromMillisecondsSinceEpoch(temp.timestamp * 1000),
               // Timestamp in Firebase is in milliseconds, convert to DateTime
               headlineImageUrl: temp.thumbnailImageUrl,
               // Fill as required
@@ -53,10 +54,20 @@ class ArticleTabGetController extends GetxController {
           }
         }
       });
+      articlesList.sort((a, b) => b.date.compareTo(a.date));
+
+      for (var article in articlesList) {
+        int indexWhere = uniqueArticles.indexWhere((uniqueArticle) {
+          return uniqueArticle.title == article.title;
+        });
+        if (indexWhere == -1) {
+          uniqueArticles.add(article);
+        }
+      }
     } else {
       throw Exception("Failed to load articles");
     }
 
-    return articlesList;
+    return uniqueArticles;
   }
 }
