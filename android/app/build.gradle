@@ -14,18 +14,18 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '3'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '1.0.2'
 }
 
 android {
     namespace "com.app.himalayan_express"
     compileSdkVersion 34//flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion '25.2.9519653'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,7 +47,7 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 21//flutter.minSdkVersion
         targetSdkVersion 34//flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
+        versionCode 3//flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
