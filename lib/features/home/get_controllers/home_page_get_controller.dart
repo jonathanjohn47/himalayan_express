@@ -35,7 +35,6 @@ class HomePageGetController extends GetxController
   @override
   void onInit() {
     loadCategories();
-
     super.onInit();
   }
 
@@ -77,46 +76,25 @@ class HomePageGetController extends GetxController
 
   Future<void> saveCategory() async {
     List<String> categoryNames = [];
-    categoryNames.add("World History");
-    categoryNames.add("UPSC");
-    categoryNames.add("Uncategorized");
-    categoryNames.add("Startup");
-    categoryNames.add("Sports");
-    categoryNames.add("Social Justice");
-    categoryNames.add("Science and Tech");
-    categoryNames.add("Press Release");
-    categoryNames.add("Politics");
-    categoryNames.add("Pir Panchal");
-    categoryNames.add("National");
-    categoryNames.add("More");
-    categoryNames.add("Ladakh");
-    categoryNames.add("Kashmir");
-    categoryNames.add("JKSSB");
-    categoryNames.add("JKPSC");
-    categoryNames.add("Jammu Kashmir");
-    categoryNames.add("Jammu");
-    categoryNames.add("International Relations");
-    categoryNames.add("International");
-    categoryNames.add("Internal Security");
-    categoryNames.add("Indian Society");
-    categoryNames.add("Indian Polity");
-    categoryNames.add("Indian History");
-    categoryNames.add("Healthcare");
-    categoryNames.add("Government Schemes");
-    categoryNames.add("Geography");
-    categoryNames.add("Featured");
-    categoryNames.add("Ethics, Integrity and Aptitude");
-    categoryNames.add("Environment");
-    categoryNames.add("Entertainment");
-    categoryNames.add("Edit/Opinion");
-    categoryNames.add("Economy");
-    categoryNames.add("Economics");
-    categoryNames.add("Disaster Management");
-    categoryNames.add("Current Affairs");
-    categoryNames.add("Chenab Valley");
-    categoryNames.add("Business");
-    categoryNames.add("Ayurveda");
-    categoryNames.add("Aspirants Corner");
+
+    //Jammu Kashmir Chenab Valley Pir Panchal $\vee$ National Edit/Opinion Aspirants Corner PR Business Healthcare Sports
+    // Politics
+    // Entertainment
+
+    categoryNames.addAll([
+      'Jammu Kashmir',
+      'Chenab Valley',
+      'Pir Panchal',
+      'National',
+      'Edit/Opinion',
+      'Aspirants Corner',
+      'PR',
+      'Business',
+      'Healthcare',
+      'Sports',
+      'Entertainment',
+      'Politics',
+    ]);
 
     for (var categoryName in categoryNames) {
       ArticleCategoryModel articleCategoryModel = ArticleCategoryModel(
