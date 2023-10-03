@@ -51,18 +51,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDLeHrH_eWtKLRDU7v7Fnxji2RmbtFIEyE',
-    appId: '1:1025967779190:android:1f9ae95615201e11f75e57',
+    appId: '1:1025967779190:android:68aef2ccb3d7ce75f75e57',
     messagingSenderId: '1025967779190',
     projectId: 'himalayanexpress-6288a',
+    databaseURL: 'https://himalayanexpress-6288a-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'himalayanexpress-6288a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDzo_FaPU149Hh65vAKJA_Gdl9WoUEGnGk',
-    appId: '1:1025967779190:ios:419858ea4e30b752f75e57',
+    appId: '1:1025967779190:ios:34b396a2f7f8aaadf75e57',
     messagingSenderId: '1025967779190',
     projectId: 'himalayanexpress-6288a',
+    databaseURL: 'https://himalayanexpress-6288a-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'himalayanexpress-6288a.appspot.com',
+    androidClientId: '1025967779190-fkvrar8li81st4arhnrguha9aeksve0b.apps.googleusercontent.com',
     iosClientId: '1025967779190-vvb5ns72kda8eebhee51f4httnhk553l.apps.googleusercontent.com',
     iosBundleId: 'com.app.himalayanExpress',
   );
