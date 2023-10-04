@@ -1,11 +1,10 @@
-import 'package:himalayan_express/core/app_colors.dart';
-import 'package:himalayan_express/helpers/date_time_helpers.dart';
-import 'package:himalayan_express/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:himalayan_express/core/app_colors.dart';
+import 'package:himalayan_express/helpers/date_time_helpers.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../models/article_model.dart';
+import '../../../models/articles_from_rtdb.dart';
 import '../../article_details/ui/article_details_page.dart';
 
 class SearchPage extends StatelessWidget {
@@ -58,13 +57,13 @@ class SearchPage extends StatelessWidget {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: FutureBuilder<List<ArticleModel>>(
+                  child: FutureBuilder<List<ArticlesFromRtdb>>(
                       future: Future.delayed(const Duration(seconds: 2), () {
                         return [];
                       }),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          List<ArticleModel> allArticles = snapshot.data!;
+                          List<ArticlesFromRtdb> allArticles = snapshot.data!;
                           return Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.0.sp),
                             child: Column(
@@ -116,7 +115,7 @@ class SearchPage extends StatelessWidget {
                                                                         4.sp),
                                                             child:
                                                                 Image.network(
-                                                              e.headlineImageUrl,
+                                                              e.thumbnailImageUrl,
                                                               fit: BoxFit.cover,
                                                               width: 20.w,
                                                               height: 20.w,
@@ -131,7 +130,7 @@ class SearchPage extends StatelessWidget {
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          "Published: ${e.date.toDateWithShortMonthNameAndTime}",
+                                                          "Published: ${DateTime.fromMillisecondsSinceEpoch(e.timestamp * 1000).toDateWithShortMonthNameAndTime}",
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.grey,

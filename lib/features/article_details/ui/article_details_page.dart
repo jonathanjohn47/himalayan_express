@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:himalayan_express/core/app_colors.dart';
 import 'package:himalayan_express/helpers/date_time_helpers.dart';
+import 'package:himalayan_express/models/articles_from_rtdb.dart';
 import 'package:sizer/sizer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../core/app_colors.dart';
-import '../../../models/article_model.dart';
-
 class ArticleDetailsPage extends StatelessWidget {
-  final ArticleModel articleModel;
+  final ArticlesFromRtdb articleModel;
 
   ArticleDetailsPage({Key? key, required this.articleModel}) : super(key: key);
 
@@ -18,15 +17,6 @@ class ArticleDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (articleModel.youtubeLink != null) {
-      youtubePlayerController = YoutubePlayerController(
-        initialVideoId: articleModel.youtubeLink!,
-        flags: const YoutubePlayerFlags(
-          autoPlay: true,
-          mute: false,
-        ),
-      );
-    }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0), child: Container()),
@@ -38,20 +28,16 @@ class ArticleDetailsPage extends StatelessWidget {
             floating: true,
             automaticallyImplyLeading: false,
             expandedHeight: 30.h,
-            flexibleSpace: articleModel.headlineImageUrl.isEmpty
-                ? articleModel.youtubeLink != null
-                ? YoutubePlayer(
-              controller: youtubePlayerController,
-            )
-                : Image.asset(
-                'assets/images/Daily-Veracity-News-300x100-1.png')
-                : Image.network(articleModel.headlineImageUrl),
+            flexibleSpace: articleModel.thumbnailImageUrl.isEmpty
+                ? Image.asset(
+                    'assets/images/Himalayan Express___ PNG.png')
+                : Image.network(articleModel.thumbnailImageUrl),
           ),
           SliverToBoxAdapter(
             child: SizedBox(
               child: Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 16.0.sp, vertical: 8.sp),
+                    EdgeInsets.symmetric(horizontal: 16.0.sp, vertical: 8.sp),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -66,12 +52,12 @@ class ArticleDetailsPage extends StatelessWidget {
                       children: [
                         Text('Published By:',
                             style:
-                            TextStyle(fontSize: 10.sp, color: Colors.grey)),
+                                TextStyle(fontSize: 10.sp, color: Colors.grey)),
                         SizedBox(
                           width: 4.sp,
                         ),
                         Text(
-                          articleModel.publisher.name,
+                          articleModel.publisherName.name,
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontStyle: FontStyle.italic,
@@ -87,12 +73,14 @@ class ArticleDetailsPage extends StatelessWidget {
                       children: [
                         Text('Date:',
                             style:
-                            TextStyle(fontSize: 10.sp, color: Colors.grey)),
+                                TextStyle(fontSize: 10.sp, color: Colors.grey)),
                         SizedBox(
                           width: 4.sp,
                         ),
                         Text(
-                          articleModel.date.toDateWithShortMonthNameAndTime,
+                          DateTime.fromMillisecondsSinceEpoch(
+                                  articleModel.timestamp * 1000)
+                              .toDateWithShortMonthNameAndTime,
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontStyle: FontStyle.italic,
@@ -113,12 +101,12 @@ class ArticleDetailsPage extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
+              (BuildContext context, int index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0.sp),
                   child: SingleChildScrollView(
                     child: Html(
-                      data: articleModel.htmlText,
+                      data: articleModel.content,
                     ),
                   ),
                 );
@@ -159,7 +147,7 @@ class ArticleDetailsPage extends StatelessWidget {
                 ],
               ),
               onPressed: () {
-                FlutterShareMe().shareToSystem(msg: articleModel.id);
+                FlutterShareMe().shareToSystem(msg: articleModel.url);
               },
             ),
           ),

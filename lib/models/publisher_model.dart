@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-PublisherModel publisherModelFromJson(String str) => PublisherModel.fromJson(json.decode(str));
+PublisherModel publisherModelFromJson(String str) =>
+    PublisherModel.fromJson(json.decode(str));
 
 String publisherModelToJson(PublisherModel data) => json.encode(data.toJson());
 
@@ -39,26 +40,26 @@ class PublisherModel {
       );
 
   factory PublisherModel.fromJson(Map<String, dynamic> json) => PublisherModel(
-    name: json["name"],
-    email: json["email"],
-    password: json["password"],
-    profilePicLink: json["profile_pic_link"],
-    dateCreated: json["date_created"],
-  );
+        name: json["name"],
+        email: json["email"],
+        password: json["password"],
+        profilePicLink: json["profile_pic_link"],
+        dateCreated: json["date_created"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "email": email,
-    "password": password,
-    "profile_pic_link": profilePicLink,
-    "date_created": dateCreated,
-  };
+        "name": name,
+        "email": email,
+        "password": password,
+        "profile_pic_link": profilePicLink,
+        "date_created": dateCreated,
+      };
 
   factory PublisherModel.empty() => PublisherModel(
-    name: '',
-    email: '',
-    password: '',
-    profilePicLink: '',
-    dateCreated: '',
-  );
+        name: '',
+        email: '',
+        password: '',
+        profilePicLink: '',
+        dateCreated: '',
+      );
 }

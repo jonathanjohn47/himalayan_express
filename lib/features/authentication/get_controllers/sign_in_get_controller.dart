@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../home/ui/home_page.dart';
 
-
 class SignInGetController extends GetxController {
   final _isPasswordVisible = false.obs;
 
@@ -28,7 +27,7 @@ class SignInGetController extends GetxController {
           .user;
 
       if (user != null) {
-        Get.offAll(() =>  HomePage());
+        Get.offAll(() => HomePage());
       } else {
         Get.snackbar('Error', 'Sign in failed. Please try again.',
             snackPosition: SnackPosition.BOTTOM);

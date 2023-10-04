@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:himalayan_express/core/app_constants.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../models/category_model.dart';
 
@@ -16,20 +15,27 @@ class HomePageGetController extends GetxController
   late TabController tabController;
 
   void loadCategories() async {
-    FirebaseFirestore.instance
-        .collection(AppConstants.categories)
-        .snapshots()
-        .listen((value) {
-      categories.value = value.docs
-          .map((e) =>
-              ArticleCategoryModel.fromJson(jsonDecode(jsonEncode(e.data()))))
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://himalayanexpress.in/wp-json/mywebsite/v1/categories/'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String responseBody = await response.stream.bytesToString();
+      List<dynamic> jsonList = json.decode(responseBody);
+
+      categories.value = jsonList
+          .map((e) => ArticleCategoryModel.fromJson(jsonDecode(jsonEncode(e))))
           .toList();
-      categories.sort((a, b) => a.categoryNumber.compareTo(b.categoryNumber));
+
+      categories.sort((a, b) => a.id.compareTo(b.id));
+
       tabController = TabController(length: categories.length, vsync: this);
-      tabController.addListener(() {
-        selectedIndex.value = tabController.index;
-      });
-    });
+    } else {
+      print(response.reasonPhrase);
+    }
   }
 
   @override
@@ -38,7 +44,7 @@ class HomePageGetController extends GetxController
     super.onInit();
   }
 
-  Future<void> deleteDuplicateCategories() async {
+/*Future<void> deleteDuplicateCategories() async {
     await FirebaseFirestore.instance
         .collection(AppConstants.categories)
         .get()
@@ -72,44 +78,37 @@ class HomePageGetController extends GetxController
             .set(newCategory.toJson());
       }
     });
-  }
+  }*/
 
-  Future<void> saveCategory() async {
+/*Future<void> saveCategory() async {
     List<String> categoryNames = [];
 
-    //Jammu Kashmir Chenab Valley Pir Panchal $\vee$ National Edit/Opinion Aspirants Corner PR Business Healthcare Sports
-    // Politics
-    // Entertainment
+    //$\begin{array}{llllll}\text { JAMMU } & \text { KASHMIR NATIONAL EDIT/OPINION EDUCATION ENTERTAINMENT HEALTHCARE WORLD BUSINESS SPORTS }\end{array}$
 
     categoryNames.addAll([
-      'Jammu Kashmir',
-      'Chenab Valley',
-      'Pir Panchal',
+      'Jammu',
+      'Kashmir',
       'National',
-      'Edit/Opinion',
-      'Aspirants Corner',
-      'PR',
-      'Business',
-      'Healthcare',
-      'Sports',
+      'Edit/opinion',
+      'Education',
       'Entertainment',
-      'Politics',
+      'Healthcare',
+      'World',
+      'Business',
+      'Sports'
     ]);
 
     for (var categoryName in categoryNames) {
       ArticleCategoryModel articleCategoryModel = ArticleCategoryModel(
-          id: (categoryNames.indexOf(categoryName) + categories.length + 1)
-              .toString(),
+          id: (categories.length + 1).toString(),
           name: categoryName,
-          categoryNumber:
-              categoryNames.indexOf(categoryName) + categories.length + 1,
+          categoryNumber: categories.length + 1,
           requiresRegistration: false);
 
       await FirebaseFirestore.instance
           .collection(AppConstants.categories)
-          .doc((categoryNames.indexOf(categoryName) + categories.length + 1)
-              .toString())
+          .doc((categories.length + 1).toString())
           .set(articleCategoryModel.toJson());
     }
-  }
+  }*/
 }

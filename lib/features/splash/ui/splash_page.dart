@@ -33,7 +33,8 @@ class SplashPage extends StatelessWidget {
                   width: 60.w,
                   child: Hero(
                       tag: 'logo',
-                      child: Image.asset('assets/images/Himalayan Express___ PNG.png')),
+                      child: Image.asset(
+                          'assets/images/Himalayan Express___ PNG.png')),
                 ),
               ),
             ),

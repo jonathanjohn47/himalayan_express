@@ -36,7 +36,7 @@ class SignUpPage extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'Welcome to Himalayan Express',
+                              'Welcome to Daily Veracity News',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w500,

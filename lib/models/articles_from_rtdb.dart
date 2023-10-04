@@ -4,72 +4,90 @@
 
 import 'dart:convert';
 
-Map<String, ArticlesFromRtdb> articlesFromRtdbFromJson(String str) =>
-    Map.from(json.decode(str)).map((k, v) =>
-        MapEntry<String, ArticlesFromRtdb>(k, ArticlesFromRtdb.fromJson(v)));
+List<ArticlesFromRtdb> articlesFromRtdbFromJson(String str) =>
+    List<ArticlesFromRtdb>.from(
+        json.decode(str).map((x) => ArticlesFromRtdb.fromJson(x)));
 
-String articlesFromRtdbToJson(Map<String, ArticlesFromRtdb> data) =>
-    json.encode(
-        Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
+String articlesFromRtdbToJson(List<ArticlesFromRtdb> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ArticlesFromRtdb {
-  List<String> category;
-  String content;
-  String publisherName;
-  String thumbnailImageUrl;
-  int timestamp;
   String title;
+  String content;
   String url;
+  int timestamp;
+  List<String> category;
+  PublisherName publisherName;
+  dynamic thumbnailImageUrl;
 
   ArticlesFromRtdb({
-    required this.category,
+    required this.title,
     required this.content,
+    required this.url,
+    required this.timestamp,
+    required this.category,
     required this.publisherName,
     required this.thumbnailImageUrl,
-    required this.timestamp,
-    required this.title,
-    required this.url,
   });
 
   ArticlesFromRtdb copyWith({
-    List<String>? category,
-    String? content,
-    String? publisherName,
-    String? thumbnailImageUrl,
-    int? timestamp,
     String? title,
+    String? content,
     String? url,
+    int? timestamp,
+    List<String>? category,
+    PublisherName? publisherName,
+    dynamic thumbnailImageUrl,
   }) =>
       ArticlesFromRtdb(
-        category: category ?? this.category,
+        title: title ?? this.title,
         content: content ?? this.content,
+        url: url ?? this.url,
+        timestamp: timestamp ?? this.timestamp,
+        category: category ?? this.category,
         publisherName: publisherName ?? this.publisherName,
         thumbnailImageUrl: thumbnailImageUrl ?? this.thumbnailImageUrl,
-        timestamp: timestamp ?? this.timestamp,
-        title: title ?? this.title,
-        url: url ?? this.url,
       );
 
   factory ArticlesFromRtdb.fromJson(Map<String, dynamic> json) =>
       ArticlesFromRtdb(
-        category: List<String>.from(json["category"].map((x) => x)),
-        content: json["content"],
-        publisherName: json["publisher_name"],
-        thumbnailImageUrl: json["thumbnail_image_url"] == false
-            ? ""
-            : json["thumbnail_image_url"],
-        timestamp: json["timestamp"],
         title: json["title"],
+        content: json["content"],
         url: json["url"],
+        timestamp: json["timestamp"],
+        category: List<String>.from(json["category"].map((x) => x)),
+        publisherName: publisherNameValues.map[json["publisher_name"]]!,
+        thumbnailImageUrl: json["thumbnail_image_url"] == false ||
+                json["thumbnail_image_url"] == null ||
+                json["thumbnail_image_url"] == ''
+            ? ''
+            : json["thumbnail_image_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "category": List<dynamic>.from(category.map((x) => x)),
-        "content": content,
-        "publisher_name": publisherName,
-        "thumbnail_image_url": thumbnailImageUrl,
-        "timestamp": timestamp,
         "title": title,
+        "content": content,
         "url": url,
+        "timestamp": timestamp,
+        "category": List<dynamic>.from(category.map((x) => x)),
+        "publisher_name": publisherNameValues.reverse[publisherName],
+        "thumbnail_image_url": thumbnailImageUrl,
       };
+}
+
+enum PublisherName { HIMALAYAN_EXPRESS }
+
+final publisherNameValues =
+    EnumValues({"Himalayan Express": PublisherName.HIMALAYAN_EXPRESS});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

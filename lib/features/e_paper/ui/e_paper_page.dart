@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:himalayan_express/core/app_colors.dart';
 import 'package:himalayan_express/helpers/date_time_helpers.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/app_colors.dart';
 import '../../view_image/ui/image_view.dart';
 import '../get_controllers/e_paper_get_controller.dart';
 
@@ -77,7 +77,7 @@ class EPaperPage extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/Himalayan Express___ PNG.png',
-                    height: 10.h,
+                    height: 8.h,
                   ),
                 ],
               ),

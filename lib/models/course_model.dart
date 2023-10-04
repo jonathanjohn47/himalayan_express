@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-CourseModel courseModelFromJson(String str) => CourseModel.fromJson(json.decode(str));
+CourseModel courseModelFromJson(String str) =>
+    CourseModel.fromJson(json.decode(str));
 
 String courseModelToJson(CourseModel data) => json.encode(data.toJson());
 
@@ -35,16 +36,16 @@ class CourseModel {
       );
 
   factory CourseModel.fromJson(Map<String, dynamic> json) => CourseModel(
-    id: json["id"],
-    name: json["name"],
-    price: json["price"]?.toDouble(),
-    durationInMonths: json["duration_in_months"],
-  );
+        id: json["id"],
+        name: json["name"],
+        price: json["price"]?.toDouble(),
+        durationInMonths: json["duration_in_months"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "price": price,
-    "duration_in_months": durationInMonths,
-  };
+        "id": id,
+        "name": name,
+        "price": price,
+        "duration_in_months": durationInMonths,
+      };
 }

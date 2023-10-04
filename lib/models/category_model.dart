@@ -4,54 +4,53 @@
 
 import 'dart:convert';
 
-ArticleCategoryModel articleCategoryModelFromJson(String str) => ArticleCategoryModel.fromJson(json.decode(str));
+List<ArticleCategoryModel> articleCategoryModelFromJson(String str) => List<ArticleCategoryModel>.from(json.decode(str).map((x) => ArticleCategoryModel.fromJson(x)));
 
-String articleCategoryModelToJson(ArticleCategoryModel data) => json.encode(data.toJson());
+String articleCategoryModelToJson(List<ArticleCategoryModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ArticleCategoryModel {
-  String id;
-  int categoryNumber;
+  int id;
   String name;
-  bool requiresRegistration;
+  String description;
+  String slug;
+  int count;
 
   ArticleCategoryModel({
     required this.id,
-    required this.categoryNumber,
     required this.name,
-    required this.requiresRegistration,
+    required this.description,
+    required this.slug,
+    required this.count,
   });
 
   ArticleCategoryModel copyWith({
-    String? id,
-    int? categoryNumber,
+    int? id,
     String? name,
-    bool? requiresRegistration,
+    String? description,
+    String? slug,
+    int? count,
   }) =>
       ArticleCategoryModel(
         id: id ?? this.id,
-        categoryNumber: categoryNumber ?? this.categoryNumber,
         name: name ?? this.name,
-        requiresRegistration: requiresRegistration ?? this.requiresRegistration,
+        description: description ?? this.description,
+        slug: slug ?? this.slug,
+        count: count ?? this.count,
       );
 
   factory ArticleCategoryModel.fromJson(Map<String, dynamic> json) => ArticleCategoryModel(
     id: json["id"],
-    categoryNumber: json["categoryNumber"],
     name: json["name"],
-    requiresRegistration: json["requires_registration"],
+    description: json["description"],
+    slug: json["slug"],
+    count: json["count"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "categoryNumber": categoryNumber,
     "name": name,
-    "requires_registration": requiresRegistration,
+    "description": description,
+    "slug": slug,
+    "count": count,
   };
-
-  factory ArticleCategoryModel.empty() => ArticleCategoryModel(
-    id: '',
-    categoryNumber: 0,
-    name: '',
-    requiresRegistration: false,
-  );
 }
