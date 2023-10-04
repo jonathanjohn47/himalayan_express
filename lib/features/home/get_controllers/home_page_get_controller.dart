@@ -32,6 +32,8 @@ class HomePageGetController extends GetxController
 
       categories.sort((a, b) => a.id.compareTo(b.id));
 
+      categories.removeWhere((element) => element.name == 'Uncategorized');
+
       tabController = TabController(length: categories.length, vsync: this);
     } else {
       print(response.reasonPhrase);

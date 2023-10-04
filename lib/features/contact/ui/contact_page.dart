@@ -32,7 +32,7 @@ class ContactPage extends StatelessWidget {
                       TextStyle(fontWeight: FontWeight.w500, fontSize: 10.sp),
                 ),
                 Text(
-                  'Javed Shah',
+                  'Tahir Rufayee',
                   style:
                       TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp),
                 ),
@@ -66,7 +66,7 @@ class ContactPage extends StatelessWidget {
                       TextStyle(fontWeight: FontWeight.w500, fontSize: 10.sp),
                 ),
                 SelectableText(
-                  'contact@indianvisionnews.com',
+                  'newsroom@himalayanexpress.in',
                   style:
                       TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp),
                 ),
@@ -84,10 +84,10 @@ class ContactPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    launchUrl(Uri.parse('www.indianvisionnews.com'));
+                    launchUrl(Uri.parse('www.himalayanexpress.in'));
                   },
                   child: Text(
-                    'www.indianvisionnews.com',
+                    'www.himalayanexpress.in',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12.sp,
