@@ -57,7 +57,7 @@ class ArticleDetailsPage extends StatelessWidget {
                           width: 4.sp,
                         ),
                         Text(
-                          articleModel.publisherName.name,
+                          articleModel.publisherName,
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontStyle: FontStyle.italic,

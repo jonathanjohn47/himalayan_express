@@ -91,15 +91,9 @@ class ArticlesTab extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 16.sp),
                                     child: Row(
                                       children: [
-                                        CircleAvatar(
-                                          radius: 10.sp,
-                                          child: Text(e.publisherName.name[0]),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
+
                                         Text(
-                                          e.publisherName.name,
+                                          e.publisherName,
                                           style: TextStyle(
                                               color: Colors.grey,
                                               fontSize: 10.sp),
@@ -365,7 +359,7 @@ class ArticlesTab extends StatelessWidget {
                         ],
                       );
               }
-              return const Center(
+              return Center(
                 child: CircularProgressIndicator(),
               );
             }));
