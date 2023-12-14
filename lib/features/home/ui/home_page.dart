@@ -174,7 +174,7 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Get.to(() => EPaperPage());
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       MdiIcons.newspaper,
                       color: Colors.white,
                     )),

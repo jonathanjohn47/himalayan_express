@@ -41,17 +41,17 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   flutter_share_me: ^1.4.0
   carousel_slider: ^4.2.1
-  url_launcher: ^6.1.11
-  material_design_icons_flutter: ^6.0.7096
-  firebase_core: ^2.13.1
-  firebase_auth: ^4.6.2
-  country_picker: ^2.0.20
-  cloud_firestore: ^4.8.0
-  google_sign_in: ^6.1.4
+  url_launcher: ^6.2.2
+  material_design_icons_flutter: ^7.0.7296
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  country_picker: ^2.0.23
+  cloud_firestore: ^4.13.6
+  google_sign_in: ^6.2.1
   youtube_player_flutter: ^8.1.2
   auto_size_text: ^3.0.0
-  firebase_database: ^10.2.5
-  font_awesome_flutter: ^10.5.0
+  firebase_database: ^10.3.8
+  font_awesome_flutter: ^10.6.0
 
 dev_dependencies:
   flutter_test:
