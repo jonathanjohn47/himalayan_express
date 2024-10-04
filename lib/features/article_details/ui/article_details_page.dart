@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_share_me/flutter_share_me.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:himalayan_express/core/app_colors.dart';
 import 'package:himalayan_express/helpers/date_time_helpers.dart';
@@ -147,7 +147,7 @@ class ArticleDetailsPage extends StatelessWidget {
                 ],
               ),
               onPressed: () {
-                FlutterShareMe().shareToSystem(msg: articleModel.url);
+                /*FlutterShareMe().shareToSystem(msg: articleModel.url);*/
               },
             ),
           ),

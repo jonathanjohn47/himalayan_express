@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart' as carousel;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 import 'package:himalayan_express/helpers/date_time_helpers.dart';
 
@@ -14,7 +14,8 @@ class EPaperGetController extends GetxController {
   TextEditingController selectedDateController = TextEditingController();
   Rx<EPaperModel> ePaperModel = EPaperModel.empty().obs;
 
-  CarouselController carouselController = CarouselController();
+  carousel.CarouselSliderController carouselController =
+      carousel.CarouselSliderController();
 
   RxInt currentIndex = 0.obs;
 
